@@ -68,7 +68,7 @@ buttonCreate.addEventListener('click', () => {
   console.log('создаю');
   const div = document.createElement('div');
   div.classList.add('new-div');
-  div.innerHTML = `<h1>${inputText.value}</h1>`;
+  div.textContent = `${inputText.value}`;
   main.appendChild(div);
   clearInput();
 });
