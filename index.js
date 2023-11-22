@@ -1,5 +1,6 @@
 const inputText = document.querySelector('.input_text');
 const inputNumber = document.querySelector('.input_number');
+const form = document.querySelector('.inputs')
 
 const buttonConsole = document.querySelector('.input__button_console');
 const buttonClear = document.querySelector('.input__button_clear');
@@ -29,12 +30,16 @@ function clearInput() {
 }
 
 buttonBlock.addEventListener('click', () => {
-  if (inputText.readOnly == true) {
+  if (inputText.disabled == true) {
     console.log('разблокирую');
-    inputText.readOnly = false;
+    inputText.disabled = false;
+    buttonBlock.textContent = 'Заблокировать';
+    inputText.placeholder = 'Введите текст'
   } else {
     console.log('блокирую');
-    inputText.readOnly = true;
+    inputText.disabled = true;
+    buttonBlock.textContent = 'Разблокировать';
+    inputText.placeholder = ''
   }
 });
 
@@ -66,11 +71,15 @@ function getRandomIndex() {
 
 buttonCreate.addEventListener('click', () => {
   console.log('создаю');
-  const div = document.createElement('div');
-  div.classList.add('new-div');
-  div.textContent = `${inputText.value}`;
-  main.appendChild(div);
-  clearInput();
+  if ((inputText.value !== '')) {
+    const div = document.createElement('div');
+    div.classList.add('new-div');
+    div.textContent = `${inputText.value}`;
+    main.appendChild(div);
+    clearInput();
+  } else {
+    alert ("ВВЕДИ ЗНАЧЕНИЕ")
+  }
 });
 
 buttonRemoveLast.addEventListener('click', () => {
