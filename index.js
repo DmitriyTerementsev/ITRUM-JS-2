@@ -1,6 +1,6 @@
 const inputText = document.querySelector('.input_text');
 const inputNumber = document.querySelector('.input_number');
-const form = document.querySelector('.inputs')
+const form = document.querySelector('.inputs');
 
 const buttonConsole = document.querySelector('.input__button_console');
 const buttonClear = document.querySelector('.input__button_clear');
@@ -34,12 +34,12 @@ buttonBlock.addEventListener('click', () => {
     console.log('разблокирую');
     inputText.disabled = false;
     buttonBlock.textContent = 'Заблокировать';
-    inputText.placeholder = 'Введите текст'
+    inputText.placeholder = 'Введите текст';
   } else {
     console.log('блокирую');
     inputText.disabled = true;
     buttonBlock.textContent = 'Разблокировать';
-    inputText.placeholder = ''
+    inputText.placeholder = '';
   }
 });
 
@@ -71,24 +71,31 @@ function getRandomIndex() {
 
 buttonCreate.addEventListener('click', () => {
   console.log('создаю');
-  if ((inputText.value !== '')) {
+  if (inputText.value !== '') {
     const div = document.createElement('div');
     div.classList.add('new-div');
     div.textContent = `${inputText.value}`;
     main.appendChild(div);
     clearInput();
   } else {
-    alert ("ВВЕДИ ЗНАЧЕНИЕ")
+    alert('ВВЕДИ ЗНАЧЕНИЕ');
   }
 });
 
 buttonRemoveLast.addEventListener('click', () => {
   const blocks = document.querySelectorAll('.new-div');
-  blocks[blocks.length - 1].remove();
+  if (blocks.length >= 1) {
+    blocks[blocks.length - 1].remove();
+  } else {
+    alert('НЕЧЕГО УДАЛЯТЬ');
+  }
 });
 
 buttonRemoveN.addEventListener('click', () => {
   const blocks = document.querySelectorAll('.new-div');
-  console.log(inputNumber.value);
-  blocks[inputNumber.value - 1].remove();
+  if (blocks.length >= 1) {
+    blocks[inputNumber.value - 1].remove();
+  } else {
+    alert('НЕЧЕГО УДАЛЯТЬ');
+  }
 });
